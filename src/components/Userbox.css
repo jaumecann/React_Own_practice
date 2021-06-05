@@ -1,0 +1,21 @@
+.userbox{
+    padding: 10px;
+    font-weight: 900;
+}
+
+.userbox div {
+    margin: 15px;
+}
+
+.userbox label {
+    display: block;
+}
+
+.userbox input {
+    width: 100%;
+}
+
+.userbox button{
+    color: white;
+    background-color: darkmagenta;
+}
