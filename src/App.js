@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import NewUserItem from './components/NewUser';
 import Userbox from './components/Userbox';
 import Card from './UI/Card'
 
@@ -6,8 +7,12 @@ import Card from './UI/Card'
 
 function App() {
 
+  const [newUsers, setNewUsers] = useState([]); 
+
   const onNewEntry = (data) => {
-    console.log(data)
+    setNewUsers((prevUsers) => {
+      return [data, ...prevUsers];
+    })
   }
 
 
@@ -17,6 +22,15 @@ function App() {
       <Userbox newEntry={onNewEntry} />    
      </Card>
 
+    <ul>
+      {newUsers.map((entry) => 
+      <NewUserItem 
+        key={entry.id}
+        name={entry.name}
+        age={entry.age}
+      />    
+      )}
+    </ul>
       
     </div>
   );
