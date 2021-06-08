@@ -10,15 +10,21 @@ const [enteredAge, setAge] = useState('');
 const submitHandler = (event) => {
     event.preventDefault();
 
-    const userData = {
-        id: Math.random().toString(),
-        name: enteredName,
-        age: enteredAge,
+    if (!enteredName || !enteredAge){
+        props.warning(true)
+    } else {
+        const userData = {
+            id: Math.random().toString(),
+            name: enteredName,
+            age: enteredAge,
+        }
+    
+        props.newEntry(userData)
+        setName('');
+        setAge('');
     }
 
-    props.newEntry(userData)
-    setName('');
-    setAge('');
+   
 }
 
 const nameChangeHandler = (event) => {

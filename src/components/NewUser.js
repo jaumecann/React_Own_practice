@@ -5,16 +5,13 @@ const NewUserItem = (props) => {
 
 
     return (
-        <Card>
-        <div>
+      
+        <div className="user-display">
             <p>
-                {props.name}
-            </p>
-            <p>
-                {props.age}
+              {props.name} {props.age}
             </p>
         </div>
-        </Card>
+        
   
     )
 }

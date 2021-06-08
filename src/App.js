@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import NewUserItem from './components/NewUser';
 import Userbox from './components/Userbox';
 import Card from './UI/Card'
-
+import Modal from './UI/Modal'
 
 
 function App() {
 
   const [newUsers, setNewUsers] = useState([]); 
+  const [isModalActive, setModalActive] = useState(false);
 
   const onNewEntry = (data) => {
     setNewUsers((prevUsers) => {
@@ -15,14 +16,18 @@ function App() {
     })
   }
 
+  const onWarning = (badData) => {
+    setModalActive(badData)
+  }
+
 
   return (
     <div>
       <Card>
-      <Userbox newEntry={onNewEntry} />    
+      <Userbox newEntry={onNewEntry} warning={onWarning} />    
      </Card>
 
-    <ul>
+    <Card>
       {newUsers.map((entry) => 
       <NewUserItem 
         key={entry.id}
@@ -30,8 +35,10 @@ function App() {
         age={entry.age}
       />    
       )}
-    </ul>
-      
+    </Card>
+    <Modal display={isModalActive}>
+
+    </Modal>
     </div>
   );
 }
