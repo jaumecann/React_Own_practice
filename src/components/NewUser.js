@@ -1,5 +1,5 @@
 import './NewUser.css'
-import Card from '../UI/Card'
+
 
 const NewUserItem = (props) => {
 

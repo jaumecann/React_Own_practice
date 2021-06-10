@@ -11,7 +11,9 @@ const submitHandler = (event) => {
     event.preventDefault();
 
     if (!enteredName || !enteredAge){
-        props.warning(true)
+        props.warning({value:true, type:'Empty'})
+    } else if (enteredAge < 0){
+        props.warning({value:true, type:'Negative'})
     } else {
         const userData = {
             id: Math.random().toString(),

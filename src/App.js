@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import NewUserItem from './components/NewUser';
 import Userbox from './components/Userbox';
-import Card from './UI/Card'
-import Modal from './UI/Modal'
+import Card from './UI/Card';
+import Overlay from './UI/Overlay';
+import Modal from './components/Modal'
 
 
 function App() {
 
   const [newUsers, setNewUsers] = useState([]); 
-  const [isModalActive, setModalActive] = useState(false);
+  const [isOverlayActive, setOverlayActive] = useState({value:false, type:''});
 
   const onNewEntry = (data) => {
     setNewUsers((prevUsers) => {
@@ -17,7 +18,11 @@ function App() {
   }
 
   const onWarning = (badData) => {
-    setModalActive(badData)
+    setOverlayActive(badData)
+  }
+
+  const closeHandler = isClosed => {
+    setOverlayActive({value: !isClosed, type:''})
   }
 
 
@@ -36,9 +41,11 @@ function App() {
       />    
       )}
     </Card>
-    <Modal display={isModalActive}>
-
-    </Modal>
+    <Overlay display={isOverlayActive.value} isClosed={closeHandler}>
+        <Card>
+          <Modal type={isOverlayActive.type} onClose={closeHandler} />
+        </Card>
+    </Overlay>
     </div>
   );
 }
